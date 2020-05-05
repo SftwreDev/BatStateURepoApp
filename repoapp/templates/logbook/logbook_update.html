@@ -1,0 +1,51 @@
+{% load crispy_forms_tags %}
+{% load static %}
+
+<div class="formupload"  style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.25);">
+    <div class="modal-header">
+        <h5 class="text-center" style='font-family: sans-serif;'>Batangas State University Repository System</h5>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+      </div>
+
+
+  <div class="modal-body">
+
+            <div class="card" style='padding: 2rem'>
+
+
+              <form method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="form-row ">
+                    <div class="form-group col-md-6 mb-0">
+                      {{ form.referrence_no|as_crispy_field }}
+
+                    </div>
+                    <div class="form-group col-md-6 mb-0">
+                      {{ form.tracking_id|as_crispy_field }}
+                    </div>
+                  </div>
+                  {{ form.document_description|as_crispy_field }}
+                  <div class="form-row">
+                    <div class="form-group col-md-6 mb-0">
+                      {{ form.forwarded_by|as_crispy_field }}
+
+                    </div>
+                    <div class="form-group col-md-6 mb-0">
+                      {{ form.received_by|as_crispy_field }}
+                    </div>
+
+
+                  </div>
+                  {{ form.date_returned|as_crispy_field }}
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary btn-sm">Update</button>
+                  <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+                </div>
+                  </form>
+            </div>
+      </div>
+    </div>

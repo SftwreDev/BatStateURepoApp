@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col">
+{% include "side-nav.html" %}
+
+
+    </div>
+
+    <div class="col-7" style="">
+        <div class="card" style=" font-size: 14px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.25); margin-bottom: 3rem;">
+          <div class="card-body">
+            <h3 class="card-title" style='font-family: sans-serif;'>Batangas State University Repository System</h3>
+            <hr>
+            <div class="card" style='padding: 2rem'>
+
+
+              <form method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="form-row ">
+                    <div class="form-group col-md-6 mb-0">
+                      {{ form.types_of_record|as_crispy_field }}
+
+                    </div>
+                    <div class="form-group col-md-6 mb-0 pt-4">
+                      {{ form.is_controlled|as_crispy_field }}
+                    </div>
+                  </div>
+                  {{ form.identification_label|as_crispy_field }}
+                  {{ form.box_no|as_crispy_field }}
+                  <div class="form-row">
+                    <div class="form-group col-md-4 mb-0">
+                      {{ form.label|as_crispy_field }}
+                    </div>
+                    <div class="form-group col-md-4 mb-0">
+                      {{ form.department|as_crispy_field }}
+                    </div>
+                    <div class="form-group col-md-4 mb-0">
+                      {{ form.retention|as_crispy_field }}
+                    </div>
+                    <div class="form-group col-md-12 mb-0">
+
+
+
+                    </div>
+                  </div>
+                  {{ form.document_file|as_crispy_field }}
+                  <button type="submit" class="btn btn-primary btn-sm" style = 'margin-left: 27rem;'>Update File</button>
+                </form>
+            </div>
+
+          </div>
+        </div>
+    </div>
+    <div class="col">
+
+    </div>
+
+  </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,146 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% include 'navbar.html' %}
+{% include '_modal.html' %}
+{% include 'repoapp/modal_.html' %}
+<style>
+.table-header{
+  background-color: #424242;
+}
+
+</style>
+{% if user.is_authenticated %}
+  <div class="container">
+    <div class="row">
+      <div class="col">
+      {% include "side-nav.html" %}
+    </div>
+
+      <div class="col-11" style="margin-bottom: 3rem; ">
+        <div class="col" style="left: 520px; padding: 1rem;">
+          <form method="GET" class="form-inline my-2 my-lg-0">
+
+                {{ filter.form|crispy }}
+                <button type="submit" class='btn btn-primary btn-sm' style=''>
+                  <i class="fas fa-search" aria-hidden="false"></i>Search</button>
+
+              </form>
+            </div>
+
+
+          <div class="card text-center" style="
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.25); border-radius: 1rem;">
+            <div class="card-body">
+              <h3 class="card-title" style='font-family: sans-serif;'>Batangas State University Repository System</h3>
+              <hr>
+              <div class="card" style="border-radius: 1rem;">
+                <table class ='table table-sm'>
+                    <thead>
+
+                        <tr class="table-header text-light">
+                            <th scope='col'class='text-center' style='font-family: sans-serif;'>Types of Records</th>
+                            <th scope='col' class='text-center' >Types of Documents</th>
+                            <th scope='col' class='text-center'  >Identification Label</th>
+                            <th scope='col' class='text-center' >Box No. | Box Label</th>
+                            <th scope='col' class='text-center' >Date Uploaded</th>
+                            <th scope='col'class='text-center' >Retention</th>
+                            <th scope='col' class='text-center'></th>
+                            <th scope='col'></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                      {% for list in filter.qs %}
+                      <tr>
+                        <td> <a href='' class = 'authenticity'>{{ list.types_of_record }}</a></td>
+                          {% if list.is_controlled %}
+                          <td> <p class='text-muted text-center '><i class="fas fa-lock"  style='color: red;'></i></p></td>
+                          {% else %}
+                          <td> <p class='text-muted text-center'><i class="fas fa-unlock"></i></p> </td>
+                          {% endif %}
+                        <td> <p class='text-muted text-center'>{{ list.identification_label }}</p> </td>
+                        <td> <p class='text-muted text-center'>{{ list.box_no }} | {{ list.label }}</p> </td>
+                        <td> <p class='text-muted text-center'>{{ list.date_uploaded }}</p> </td>
+                        <td> <p class='text-muted text-center'>{{ list.retention }}</p> </td>
+                        <td>
+                          {% if list.is_controlled %}
+                        <td>
+                          <button class="login-btn btn btn-info btn-sm" target="_blank" ><span class="fas fa-file-download"></span></button>
+                          {% else %}
+                         <a href="{{ list.document_file.url }}"  target="_blank" class="btn btn-primary btn-sm" >
+                          <span class="fas fa-file-download"></span></a>
+                          {% endif %}
+                          <button type="button" class="file-delete btn btn-danger btn-sm" data-id="{% url 'repository:delete_file' list.pk %}">
+                            <span class="fa fa-trash"></span>
+                          </button>
+
+                          <button type="button" class="update-file btn btn-sm btn-warning" data-id="{% url 'repository:update_file' list.pk %}">
+                            <span class="fas fa-edit" style="color: white;"></span>
+                          </button>
+                        </td>
+                        {% empty %}
+                       <div class="alert alert-danger" role="alert">No available documents found in the system. Try searching again or
+                    <button class="upload-file btn-sm btn btn-primary " type="button" name="button">
+                          <span class="fa fa-plus mr-2"></span>Upload File</button>
+                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button></div>
+                      </tr></td></td>
+                    {% endfor %}
+
+                    </tbody>
+
+                </table>
+                <button class="upload-file btn-sm btn btn-primary " type="button" name="button" style="margin-left: 58rem; height: 30px;
+                width: 30px; border-radius: 100%;">
+                  <span class="fas fa-plus "></span></button>
+              </div>
+
+            </div>
+          </div>
+      </div>
+      <div class="col" >
+
+      </div>
+
+    </div>
+  </div>
+
+{% endif %}
+  <!-- Button trigger modal -->
+
+
+ 
+{% endblock %}
+{% block extrascripts %}
+
+<script type="text/javascript">
+    $(function () {
+
+     // Create book button
+     $(".upload-file").modalForm({formURL: "{% url 'repository:file_upload' %}"});
+
+      // Update book buttons
+      $(".update-file").each(function () {
+        $(this).modalForm({formURL: $(this).data('id')});
+      });
+
+      // Log in button
+      $(".login-btn").modalForm({formURL: "{% url 'repository:loginpage' %}"});
+
+      // Delete book buttons
+      $(".file-delete").each(function () {
+        $(this).modalForm({formURL: $(this).data('id')});
+      });
+
+      // View book buttons
+      $(".file-view").each(function () {
+        $(this).modalForm({formURL: $(this).data('id')});
+      });
+
+    });
+  </script>
+  {% endblock extrascripts %}

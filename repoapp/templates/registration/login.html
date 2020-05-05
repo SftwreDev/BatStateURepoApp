@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% if form.non_field_errors %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      {% for error in form.non_field_errors %}
+        <p{% if forloop.last %} class="mb-0"{% endif %}>{{ error }}</p>
+      {% endfor %}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  {% endif %}
+  <div class="container">
+      <div class="row">
+          <div class="col-md">
+
+          </div>
+  <div class="col-md">
+      <h1 class="text-center"></h1>
+      <div class="card" style="width: 23rem; height: 33rem; margin-top: 1rem; margin-bottom: 3rem;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.25);">
+      <center> <img src="{% static 'bsulogo.png' %}" class="card-img-top" style="width: 6rem; height: 6rem; margin-top:3rem;"> </center>
+      <p class="font-weight-bolder text-center" style="font-size: 18px; margin-top: 2rem; font-family: "Roboto;">Batangas State University <br>Repository System</p>
+    <div class="card-body">
+     <form method="POST">
+          {% csrf_token %}
+        <div class="form-group">
+        <form method="post" novalidate>
+          {% csrf_token %}
+          <input type="hidden" name="next" value="{{ next }}">
+          {{ form.username|as_crispy_field }}
+          {{ form.password|as_crispy_field }}
+          <button type="submit" class="btn btn-primary btn-sm btn-block">Log In</button>
+          <a href="{% url 'repository:signup' %}" class="text-decoration-none">Create New Account</a>
+        </form>
+        </form>
+        </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="col-md">
+  </div>
+  </div>
+
+
+{% endblock %}

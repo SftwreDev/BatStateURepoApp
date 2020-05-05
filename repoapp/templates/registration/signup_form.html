@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col">
+
+
+
+    </div>
+
+    <div class="col-7" style="">
+        <div class="card" style=" font-size: 14px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.25); margin-bottom: 3rem; margin-top: 1rem; max-width: 100rem;">
+          <div class="card-body">
+            <h3 class="card-title" style='font-family: sans-serif;'>Batangas State University Repository System</h3>
+            <hr>
+            <div class="card" style='padding: 2rem'>
+              <form method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  {{ form|crispy }}
+                <button class=" btn btn-sm btn-block btn-primary" type="submit" style="border-radius: 1rem;">Sign Up</button>
+              </form>
+
+                  
+            </div>
+
+          </div>
+        </div>
+    </div>
+    <div class="col">
+
+    </div>
+
+  </div>
+</div>
+{% endblock %}

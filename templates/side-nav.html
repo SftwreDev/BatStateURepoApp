@@ -1,0 +1,89 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'fontawesome/css/fontawesome.min.css' %}" type="text/css">
+<style>
+body {
+  font-family: "Lato", sans-serif;
+  transition: background-color .5s;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 53px;
+  left: 0;
+
+  background-color: #212121;
+  overflow-x: hidden;
+  transition: 0.2s;
+  padding-top: 0px;
+}
+
+.sidenav a {
+  padding: 5px 5px 5px 3px;
+  text-decoration: none;
+  font-size: 13px;
+  padding-left: 1rem;
+  color: #818181;
+  display: block;
+  transition: 0.1s;
+}
+
+.sidenav a:hover{
+  background-color: white;
+}
+
+.closebtn {
+  top: 0px;
+  right: 0px;
+  margin-left: 125px;
+
+  margin-top: 1rem;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 5px;}
+  .sidenav a {font-size: 15px;}
+}
+</style>
+
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+<body>
+
+<div id="mySidenav" class="sidenav">
+
+    <a href="javascript:void(0)" class="closebtn " onclick="closeNav()"><i class="far fa-times-circle"></i></a>
+    <img src="{% static 'bsu_logo.png' %}" style='margin-left: 15px; width: 9rem; height: 6rem;'>
+    <p class="text-center" style="color: white; padding: 10px; font-size: 14px;">Batangas State University Repository System</p>
+
+    <a href="{% url 'repository:home' %}"><i class="fa fa-home" aria-hidden="false"></i>&nbsp Home</a>
+    <a href="{% url 'repository:file_list' %}"><i class="fa fa-file" aria-hidden="false"></i>&nbsp Documents</a>
+
+
+    <a href="{% url 'repository:logbook_list' %}"><i class="fas fa-book" aria-hidden="false"></i>&nbsp Received Documents</a>
+
+
+  {% if user.is_authenticated %}
+            <a class="nav-link" href="/logout" style="font-size: 13px; color: #d50000;"><i class="fas fa-sign-out-alt"></i>&nbsp Log Out</a>
+  {% endif %}
+
+  <span class="badge badge-light" style='margin-left: 12px;'>{% now "SHORT_DATETIME_FORMAT" %}</span>
+</div>
+
+
+
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "180px";
+  document.getElementById("main").style.marginLeft = "250px";
+  document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0px";
+  document.getElementById("main").style.marginLeft= "0";
+  document.body.style.backgroundColor = "white";
+}
+</script>

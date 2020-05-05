@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+  {% if user.is_authenticated %}
+  {% include 'side-nav.html' %}
+
+  {% endif %}
+  <style>
+.card {
+  border-radius: 2rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-top: 1rem;
+}
+
+
+
+  </style>
+  <body>
+    <div class="container">
+      <div class="row">
+
+
+        <div class="col">
+
+        </div>
+
+        <div class="col-md-10" style="margin-bottom: 3rem;">
+          <div class="card-deck">
+            <div class="card card1">
+              <img src="{% static 'bg1.jpg' %}" class="card-img-top" alt="...">
+              <div class="card-body text-center">
+                <h5 class="card-title">University Vision</h5>
+                <p class="card-text">A premier national university that develops  leaders in the global knowledge economy.</p>
+              </div>
+            </div>
+            <div class="card card2">
+              <img src="{% static 'bg3.jpg' %}" class="card-img-top" alt="...">
+              <div class="card-body text-center">
+                <h5 class="card-title">University Mission</h5>
+                <p class="card-text">A university committed to producing leaders by providing a 21st century learning environment through innovations in education,
+                   multidisciplinary research, and community and industry partnerships in order to nurture the spirit of nationhood, propel the national economy,
+                   and engage the world for sustainable development.
+                </p>
+              </div>
+            </div>
+            <div class="card card3">
+              <img src="{% static 'bg2.jpg' %}" class="card-img-top" alt="...">
+              <div class="card-body text-center">
+                <h5 class="card-title">Core Values</h5>
+                <p class="card-text">Patriotism</p>
+                <p class="card-text">Service</p>
+                <p class="card-text">Integrity</p>
+                <p class="card-text">Resilience</p>
+                <p class="card-text">Excellence</p>
+                <p class="card-text">Faith</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col">
+
+        </div>
+
+      </div>
+    </div>
+</body>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class = 'container'>
+    <div class="row justify-content-center">
+        <div class="col-lg-4">
+            <div class="box card" style="width: 23rem;">
+                <div class="card-body">
+                    {{ detail.filename }}
+                    {{ detail.file_repo }}
+                </div>
+            </div>
+        <a href="{{ detail.file.url }}" class = 'btn btn-danger btn-sm' target="_blank">
+                                    Download</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

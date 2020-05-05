@@ -1,0 +1,42 @@
+
+.login {
+    font-size: 14px;
+}
+
+.loginbutton{
+    font-size: 18px;
+    border-radius: 20px;
+    background-color: darkred;
+}
+
+.table {
+    font-size: 13px;
+}
+
+.tablebody .a {
+    font-size: 10px;
+}
+
+
+
+.navbar-brand {
+    font-family: sans-serif;
+}
+
+
+
+.tablebody {
+    font-family: sans-serif;
+}
+.navigationbar{
+    background-color: darkred;
+}
+
+.formfooter .card-footer{
+    color: darkred;
+}
+
+.download-icon {
+  background-image: url("favicon.png"),
+  background-repeat: no-repeat, repeat;
+}

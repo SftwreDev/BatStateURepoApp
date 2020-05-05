@@ -1,0 +1,72 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'navbar.html' %}
+
+  <div class="container">
+    <div class="row">
+      <!--Side Navigation Bar-->
+{% include "side-nav.html" %}
+
+
+
+
+      <div class="col">
+
+
+
+      </div>
+
+      <div class="col-10" style="margin-bottom: 3rem; font-size: 14px;">
+          <div class="card" style="
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.25);">
+            <div class="card-body">
+              <h3 class="card-title" style='font-family: sans-serif;'>Batangas State University Repository System</h3>
+              <hr>
+              <div class="card">
+                <table class ='table'>
+                    <thead class="tabletext text-light" >
+                        <tr>
+                            <th scope='col' style='font-family: sans-serif;'>Documents Name</th>
+                            <th scope='col'>Description</th>
+                            <th scope='col'></th>
+                        </tr>
+                    </thead>
+                    <tbody class='tablebody'>
+                      {% for list in files %}
+                      <tr>
+                        <td> <a href='' class = 'authenticity'>{{ list.filename }}</a></td>
+                        <td> <p class='text-muted'>{{ list.description }}</p> </td>
+                        <td> <a href="{{ list.document_file.url }}"  target="_blank">
+                          <img src="{% static 'icons/download_icon.png' %}" alt="" style="height: 18px; width: 18px"></a>
+                          <a href="{% url 'repository:file_delete' list.pk %}" >
+                              <img src="{% static 'icons/bin.png' %}" alt="" style="height: 18px; width: 18px">
+                          </a>
+
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                </table>
+                {% if user.is_authenticated %}
+
+                {% endif %}
+              </div>
+
+            </div>
+          </div>
+      </div>
+      <div class="col">
+
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Button trigger modal -->
+
+
+
+{% endblock %}

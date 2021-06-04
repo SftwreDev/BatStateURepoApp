@@ -6,7 +6,7 @@ billiard==3.5.0.5
 celery==4.0.0
 colorama==0.4.1
 dj-database-url==0.5.0
-Django==3.0
+Django==3.1.9
 django-autoslug==1.9.6
 django-bootstrap-modal-forms==1.4.1
 django-celery==3.3.1
